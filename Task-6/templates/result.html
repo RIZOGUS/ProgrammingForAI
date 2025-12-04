@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result - Face Profiler AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Analysis Result</h1>
+            <a href="{{ url_for('index') }}" class="btn btn-outline">← Analyze Another</a>
+        </header>
+
+        <div class="result-grid">
+            <div class="left-col">
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">Facial Landmarks</h3>
+                    <div class="image-container">
+                        <img src="{{ url_for('static', filename='uploads/' + result) }}" alt="Analyzed Face">
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="mbti-card">
+                    <p>Estimated MBTI Type</p>
+                    <div class="mbti-type">{{ profile.mbti }}</div>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Based on physiognomy heuristics</p>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Personality Traits</h3>
+                    <div>
+                        {% for trait in profile.traits %}
+                        <span class="trait-badge">{{ trait }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">Measurements</h3>
+                    <div class="metrics-list">
+                        {% for key, value in profile.metrics.items() %}
+                        <div class="metric-row">
+                            <span class="metric-label">{{ key|replace('_', ' ')|title }}</span>
+                            <span class="metric-value">{{ "%.3f"|format(value) }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

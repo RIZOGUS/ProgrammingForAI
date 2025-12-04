@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Profiler AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Face Profiler AI</h1>
+            <p class="subtitle">Discover personality traits through facial analysis</p>
+        </header>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="alert">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="card">
+            <h2>Analyze Image</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Upload a clear, front-facing photo to generate a personality profile.</p>
+            
+            <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
+                <div class="upload-section" onclick="document.getElementById('file-input').click()">
+                    <input type="file" name="file" id="file-input" accept=".jpg,.jpeg,.png" onchange="document.getElementById('upload-form').submit()">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📸</div>
+                    <h3>Click to Upload Photo</h3>
+                    <p class="subtitle">Supported formats: JPG, PNG</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Analyze Video</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Upload a video to detect moving objects.</p>
+            
+            <form action="/video" method="post" enctype="multipart/form-data" id="video-form">
+                <div class="upload-section" onclick="document.getElementById('video-input').click()">
+                    <input type="file" name="video" id="video-input" accept=".mp4,.avi,.mov,.mkv" onchange="document.getElementById('video-form').submit()">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎥</div>
+                    <h3>Click to Upload Video</h3>
+                    <p class="subtitle">Supported formats: MP4, AVI, MOV</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

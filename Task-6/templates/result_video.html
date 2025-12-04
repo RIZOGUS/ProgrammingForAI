@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Analysis Result - Face Profiler AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Video Analysis Result</h1>
+            <a href="{{ url_for('index') }}" class="btn btn-outline">← Analyze Another</a>
+        </header>
+
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 1rem; color: var(--accent-color);">
+                {{ count }}
+            </div>
+            <h2>Moving Objects Detected</h2>
+            <p class="subtitle" style="margin-top: 1rem;">Total count of moving objects across all frames in <strong>{{
+                    video }}</strong></p>
+        </div>
+    </div>
+</body>
+
+</html>
